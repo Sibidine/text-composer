@@ -24,6 +24,13 @@ def add_to_graph(graph, words):
     return graph
 
 def generating_words(graph, word):
+
+    if word not in graph.get_all_nodes():
+        return "not in file"
+    for i in range(150):
+        node = graph.get_node(word)
+        print(node.value + " ")
+        word = node.next_word.value 
     
 
 def main():
@@ -33,6 +40,8 @@ def main():
 
     g = Graph()
     g = add_to_graph(g, words)
+    g.generate_probability_maps()
+    genarating_words(g, words[-1])
 
 
 
