@@ -19,7 +19,7 @@ class Node:
 
     def next_word(self):
         
-        'sum_values = 0
+        '''sum_values = 0
         for node in self.adjacent.keys():
             sum_values+= node.value
 
@@ -37,7 +37,7 @@ class Node:
         for key, value in division.items():
 
             if value > random_number:
-                return key'
+                return key'''
         
         return random.choices(self.neighbours,weights=self.neighbour_weights)[0]
 
@@ -45,7 +45,7 @@ class Node:
 
 
     
-def Graph:
+class Graph:
     def __init__(self):
         
         self.nodes = {}
@@ -58,7 +58,7 @@ def Graph:
         
         self.nodes[value] = Node(value)
 
-    def get_node(self, value)
+    def get_node(self, value):
         
         if(value not in self.nodes):
             self.add_node(value)

@@ -1,7 +1,7 @@
 # read words from files
 # generate a graph for the files
 import sys
-from graph add Node, Graph
+from graph import Node, Graph
 
 
 def read_words(file_name):
@@ -30,7 +30,8 @@ def generating_words(graph, word):
     for i in range(150):
         node = graph.get_node(word)
         print(node.value + " ")
-        word = node.next_word.value 
+        word = node.next_word.value
+    return "done"
     
 
 def main():
@@ -41,8 +42,8 @@ def main():
     g = Graph()
     g = add_to_graph(g, words)
     g.generate_probability_maps()
-    genarating_words(g, words[-1])
-
+    print_word = genarating_words(g, words[-1])
+    print(print_word)
 
 
 
