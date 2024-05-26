@@ -36,16 +36,18 @@ def generating_words(graph, word):
 
 def main():
     
-    file_path = sys.argv[1:]
+    print("c")
+    file_path = "test.txt"
     words = read_words(file_path)
-
+    print("a")
     g = Graph()
     g = add_to_graph(g, words)
     g.generate_probability_maps()
+    print("b")
     print_word = genarating_words(g, words[-1])
     print(print_word)
 
 
 
-if __name__ ==" __main__":
+if __name__ == " __main__":
     main()
