@@ -50,7 +50,7 @@ def generating_words(graph, word):
 
 def main():
     
-    file_path = "test.txt"
+    file_path = sys.argv[-1]
     words = read_words(file_path)
     g = add_to_graph(words)
     g.generate_probability_maps()
