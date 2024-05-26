@@ -12,10 +12,13 @@ class Node:
         
         self.adjacent[node] = weight
 
+    def increment_edge(self, node):
+        self.adjacent[node] = self.adjacent.get(node,0) + 1
+
     def get_probability_map(self):
-        for node, weight in self.adjacent.items():
+        for (node, weight) in self.adjacent.items():
             self.neighbours.append(node)
-            self.neighbour_weights.append(weights)
+            self.neighbour_weights.append(weight)
 
     def next_word(self):
         
@@ -34,11 +37,10 @@ class Node:
 
         random_number = random.uniform(0,1)
 
-        for key, value in division.items():
+        for key, value in divisions.items():
 
             if value > random_number:
                 return key'''
-        
         return random.choices(self.neighbours,weights=self.neighbour_weights)[0]
 
 
@@ -59,8 +61,8 @@ class Graph:
         self.nodes[value] = Node(value)
 
     def get_node(self, value):
-        
-        if(value not in self.nodes):
+       
+        if value not in self.get_all_values():
             self.add_node(value)
 
         return self.nodes[value]
