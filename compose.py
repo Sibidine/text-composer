@@ -3,7 +3,7 @@
 import sys
 import string
 from graph import Node, Graph
-
+import re
 
 def find_https_url(line):
     pattern = r'https://[^\s]+'
