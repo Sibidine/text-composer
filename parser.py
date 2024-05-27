@@ -15,8 +15,8 @@ def generate_users(filename):
     users_list = []
     with open(filename) as file:
         for line in file:
-            if starts_with_date(line):
-                name = line[line.find('-'):line.find(':')]
+            if starts_with_date(line) and ': ' in line:
+                name = line[line.find(' - ')+3:line.find(': ')]
                 if name not in users_list:
                     users_list.append(name)
                 continue
@@ -27,9 +27,9 @@ def create_dropdown(users_list):
     questions = [
             inquirer.List(
                 "User",
-                message="Choose user to generate file for:",
-                choices=users_list
-                )
+                message="Choose user to generate file for",
+                choices=users_list,
+                ),
             ]
     answers = inquirer.prompt(questions)
     return answers
@@ -37,8 +37,8 @@ def create_dropdown(users_list):
 def main():
     filename = sys.argv[-1]
     users_list = generate_users(filename)
-    selected_user = create_dropdown(users_list).values()[0]
-    pprint(selected_user)
+    selected_user = [x for x in create_dropdown(users_list).values()]
+    pprint(selected_user[0])
 
 main()
 
