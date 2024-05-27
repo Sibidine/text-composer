@@ -48,7 +48,7 @@ def generating_words(graph, word):
     return "done"
     
 
-def main():
+def compose():
     
     file_path = sys.argv[-1]
     words = read_words(file_path)
@@ -57,6 +57,3 @@ def main():
     status_word = generating_words(g, words[0])
 
 
-
-
-main()
