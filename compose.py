@@ -16,6 +16,8 @@ def read_words(file_name):
 
     with open(file_name) as file:
         for line in file:
+            if line == '<Media omitted>':
+                continue
             for word in line.split():
                 if find_https_url(word):
                     continue
