@@ -15,7 +15,7 @@ def find_phone_number(line):
 
 def filter_non_alphanumeric(word):
     pattern = r'[^a-zA-Z0-9]'
-    return bool(re.match(pattern, '', word))
+    return re.sub(pattern, '', word)
 
 
 
@@ -28,8 +28,9 @@ def read_words(file_name):
             if '<Media omitted>' in line:
                 continue
             for word in line.split():
-                if find_https_url(word) or find_phone_number(word) or not filter_non_alphanumeric(word):
+                if find_https_url(word) or find_phone_number(word):
                     continue
+                word = filter_non_alphanumeric(word)
                 word = word.lower()
                 word = word.translate(str.maketrans('','',string.punctuation))
                 words.append(word)
