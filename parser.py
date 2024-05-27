@@ -8,8 +8,6 @@ def starts_with_date(line):
     pattern = r'^\d{2}/\d{2}/\d{4}'
     return bool(re.match(pattern, line))
 
-# Test examples
-
 def generate_users(filename):
     
     users_list = []
@@ -34,11 +32,34 @@ def create_dropdown(users_list):
     answers = inquirer.prompt(questions)
     return answers
 
-def main():
-    filename = sys.argv[-1]
+def get_user(filename):
     users_list = generate_users(filename)
     selected_user = [x for x in create_dropdown(users_list).values()]
-    pprint(selected_user[0])
+    return selected_user[0]
+
+def generate_user_file(filename, user):
+
+    user_file = user+'.txt'
+    current_speaker = ''
+
+    with open(filename) as file:
+        fw = open(user_file, mode="w")
+        for line in file:
+            if starts_with_date(line) and ': ' in line:
+                current_speaker = line[line.find(' - ')+3:line.find(': ')]
+                if current_speaker == user:
+                    fw.write(line[line.find(': ')+1:])
+            elif not starts_with_date(line) and current_speaker == user:
+                fw.write(line)
+        fw.close()
+
+def main():
+    filename = sys.argv[-1]
+    username = get_user(filename)
+    generate_user_file(filename,username)
+
+
 
 main()
+# main()
 
