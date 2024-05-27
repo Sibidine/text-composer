@@ -9,6 +9,15 @@ def find_https_url(line):
     pattern = r'https://[^\s]+'
     return bool(re.match(pattern, line))
 
+def find_phone_number(line):
+    pattern = r'\b\d{10\b}'
+    return bool(re.match(pattern, line))
+
+def filter_non_alphanumeric(word):
+    pattern = r'[^a-zA-Z0-9]'
+    return bool(re.match(pattern, '', word))
+
+
 
 def read_words(file_name):
 
@@ -16,10 +25,10 @@ def read_words(file_name):
 
     with open(file_name) as file:
         for line in file:
-            if line == '<Media omitted>':
+            if '<Media omitted>' in line:
                 continue
             for word in line.split():
-                if find_https_url(word):
+                if find_https_url(word) or find_phone_number(word) or not filter_non_alphanumeric(word):
                     continue
                 word = word.lower()
                 word = word.translate(str.maketrans('','',string.punctuation))
