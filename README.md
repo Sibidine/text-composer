@@ -8,6 +8,7 @@ A simple collection of python scripts that generates 150-word text blobs for a p
   ```
   git clone https://github.com/Sibidine/test-composer.git
   cd text composer
+  pip install --upgrade -r requirements.txt
   python3 control.py {unzipped WhatsApp chat data}
   ```
   
