@@ -48,12 +48,10 @@ def generating_words(graph, word):
     return "done"
     
 
-def compose():
+def compose(file_path):
     
-    file_path = sys.argv[-1]
     words = read_words(file_path)
     g = add_to_graph(words)
     g.generate_probability_maps()
     status_word = generating_words(g, words[0])
-
 

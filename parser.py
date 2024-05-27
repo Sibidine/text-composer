@@ -53,13 +53,9 @@ def generate_user_file(filename, user):
                 fw.write(line)
         fw.close()
 
-def main():
-    filename = sys.argv[-1]
+def parse(filename):
     username = get_user(filename)
     generate_user_file(filename,username)
+    return username+'.txt'
 
-
-
-main()
-# main()
 
