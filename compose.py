@@ -5,6 +5,11 @@ import string
 from graph import Node, Graph
 
 
+def find_https_url(line):
+    pattern = r'https://[^\s]+'
+    return bool(re.match(pattern, line))
+
+
 def read_words(file_name):
 
     words = []
@@ -12,6 +17,8 @@ def read_words(file_name):
     with open(file_name) as file:
         for line in file:
             for word in line.split():
+                if find_https_url(word):
+                    continue
                 word = word.lower()
                 word = word.translate(str.maketrans('','',string.punctuation))
                 words.append(word)
